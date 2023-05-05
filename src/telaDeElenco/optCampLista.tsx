@@ -2,7 +2,7 @@
 
 
 import  React,{useEffect,useState} from 'react';
-import SwipeableViews from 'react-swipeable-views';
+
 import { useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Tabs from '@mui/material/Tabs';
@@ -80,24 +80,16 @@ export default function OptCampoLista({handlePosition, elenco}:{handlePosition:a
           <Tab label="Time" {...a11yProps(2)} />
         </Tabs>
       </div>
-      <SwipeableViews
-        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <TabelaDeJogadores jogadores={elenco?.jogadores} elenco={elenco}/>
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <div className='campinhoBody'>
-              <QuatroUmDoisTres handlePosition={handlePosition} jogadores={elenco?.jogadores}/>
-              <div className='reservarContainer'><Reservas handlePosition={handlePosition} jogadores={elenco?.jogadores}/></div>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
-        </TabPanel>
-      </SwipeableViews>
+      <TabPanel value={value} index={0}>
+        <TabelaDeJogadores jogadores={elenco?.jogadores} elenco={elenco}/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <QuatroUmDoisTres handlePosition={handlePosition} jogadores={elenco?.jogadores}/>
+        <div className='reservarContainer'><Reservas handlePosition={handlePosition} jogadores={elenco?.jogadores}/></div>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
     </Box>
   );
 }
